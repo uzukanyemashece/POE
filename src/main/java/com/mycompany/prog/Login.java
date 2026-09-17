@@ -58,4 +58,20 @@ public class Login {
 
         return hasCapital && hasDigit && hasSpecial;
     }
+     /**
+     * Ensures cell phone number is correct length and contains international country code (+27).
+     * Reference: Regular expression standard for South African (+27) international dialing format.
+     */
+    public boolean checkCellPhoneNumber() {
+        if (this.cellPhoneNumber == null) return false;
+        String cellRegex = "^\\+27[0-9]{9}$";
+        return Pattern.matches(cellRegex, this.cellPhoneNumber);
+    }
+    
+    
+    
+    
+    
+    
+    
 }
