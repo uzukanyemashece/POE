@@ -31,7 +31,7 @@ public class Prog {
         boolean validUsername = false;
         while (!validUsername) {
             System.out.print("Enter Username: ");
-             String username =scanner.nextLine();
+              userLogin.setUsername(scanner.nextLine());
             validUsername = userLogin.checkUserName();
 
             if (validUsername) {
@@ -46,7 +46,7 @@ public class Prog {
         boolean validPassword = false;
         while (!validPassword) {
             System.out.print("Enter Password: ");
-            String password =scanner.nextLine();
+            userLogin.setPassword(scanner.nextLine()); 
             validPassword = userLogin.checkPasswordComplexity();
 
             if (validPassword) {
