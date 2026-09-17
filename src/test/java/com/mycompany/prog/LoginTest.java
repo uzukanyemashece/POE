@@ -33,4 +33,21 @@ public class LoginTest {
       assertEquals(results,Expected,"");
     }
     
+     @Test
+    public void testCorrectPassword (){
+        Login obj = new Login ();
+        obj.setPassword("Ch&&sec@ke99") ;
+        boolean results = obj.checkPasswordComplexity() ;
+       boolean Expected = true ;
+       assertEquals(results, Expected) ;
+    }
+    @Test
+    public void testIncorrectPassword (){
+        Login obj = new Login ();
+        String password =     "password" ;
+        boolean results = obj.checkPasswordComplexity() ;
+        boolean Expected = false ;
+        assertEquals(results, Expected) ;
+    }
+    
 }
