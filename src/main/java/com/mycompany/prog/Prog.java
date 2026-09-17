@@ -22,10 +22,10 @@ public class Prog {
         
         
         System.out.print("Enter First Name: ");
-       String firstName = scanner.nextLine();
+       userLogin.setFirstName(scanner.nextLine());
 
         System.out.print("Enter Last Name: ");
-       String lastName = scanner.nextLine();
+       userLogin.setLastName(scanner.nextLine());
        
         // 1. Username Input & Immediate Verification
         boolean validUsername = false;
