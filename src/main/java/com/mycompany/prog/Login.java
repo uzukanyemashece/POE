@@ -4,6 +4,8 @@
  */
 package com.mycompany.prog;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Student
@@ -39,5 +41,21 @@ public class Login {
     public boolean checkUserName() {
         return username != null && username.contains("_") && username.length() <= 5;
     }
+/**
+     * Checks if password meets standard complexity rules:
+     * - At least 8 characters long
+     * - Contains a capital letter
+     * - Contains a number
+     * - Contains a special character
+     */
+    public boolean checkPasswordComplexity() {
+        if (this.password == null || this.password.length() < 8) {
+            return false;
+        }
+        boolean hasCapital = Pattern.compile("[A-Z]").matcher(this.password).find();
+        boolean hasDigit = Pattern.compile("[0-9]").matcher(this.password).find();
+        boolean hasSpecial = Pattern.compile("[^a-zA-Z0-9]").matcher(this.password).find();
 
+        return hasCapital && hasDigit && hasSpecial;
+    }
 }
