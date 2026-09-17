@@ -84,7 +84,16 @@ public class Login {
 
         return "Username successfully captured. Password successfully captured.Cell phone number successfully added.";
     } 
-    
+     /**
+     * Verifies that entered login details match the stored user details.
+   
+     */
+    public boolean loginUser(String enteredUsername, String enteredPassword) {
+        return enteredUsername != null && enteredPassword != null &&
+               enteredUsername.equals(this.username) &&
+               enteredPassword.equals(this.password);
+    }
+
     
     
     
