@@ -84,5 +84,60 @@ public class LoginTest {
       boolean results = obj.loginUser(InCorrectPassword, InCorrectUsername) ;
               assertFalse (results) ;
     }
+    @Test
+    public void UsernameCorrectlyFormatted() {
+        Login obj = new Login ();
+     obj.setUsername( "abc_1");
+     
+     boolean results = obj.checkUserName();
+     assertTrue (results) ;
+               
+    } 
+    
+    @Test
+    public void UsernameInCorrectlyFormatted() {
+        Login obj = new Login ();
+     obj.setUsername( "abc_5441");
+     boolean results = obj.checkUserName();
+     assertFalse (results) ;
+    }
+    
+    @Test
+    public void PasswordRequirementsMet(){
+    Login obj = new Login ();
+    obj.setPassword("Ch&&sec@ke99");
+    boolean hasCapital =true;
+     boolean hasDigit = true;
+     boolean hasSpecial = true ;
+    boolean results = obj.checkPasswordComplexity();
+    assertTrue (results) ;
+   
+    }
+    @Test
+     public void PasswordRequirementsNotMet(){
+    Login obj = new Login ();
+    obj.setPassword("password");
+    boolean hasCapital =false;
+     boolean hasDigit = false;
+     boolean hasSpecial = false ;
+    boolean results = obj.checkPasswordComplexity();
+    assertFalse (results) ;
+     }
+     @Test
+     public void CellphoneNumberCorrectlyFormatted (){
+     Login obj = new Login ();
+     obj.setCellPhoneNumber("+27893338967");
+     boolean results = obj.checkCellPhoneNumber();
+     assertTrue(results);
+     
+     }
+    @Test
+     public void CellphoneNumberIncorrectlyFormatted (){
+     Login obj = new Login ();
+     obj.setCellPhoneNumber("0893338967");
+     boolean results = obj.checkCellPhoneNumber();
+     assertFalse(results);
+     }
+
     
 }
