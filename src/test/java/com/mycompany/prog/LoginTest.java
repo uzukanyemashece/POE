@@ -172,4 +172,26 @@ public class LoginTest {
         assertNotNull(hash, "Message hash should not be null.");
         assertFalse(hash.isEmpty(), "Message hash should not be empty.");
     }
+    
+    @Test
+    public void testCheckMessageID() {
+        Message msg = new Message(1, "+278575975889", "Test message", "1");
+        assertTrue(msg.checkMessageID(), "Message ID should be successfully created and be <= 10 characters.");
+    }
+    @Test
+    public void testProcessSendStatusChoice1() {
+        Message msg = new Message(1, "+278575975889", "Test message", "1");
+        assertEquals("Message successfully sent.", msg.getSendStatus(), "Choice '1' should set status to 'Message successfully sent.'");
+    }
+    
+    @Test
+    public void testProcessSendStatusChoice2() {
+        Message msg = new Message(1, "+278575975889", "Test message", "2");
+        assertEquals("Press 0 to delete the message.", msg.getSendStatus(), "Choice '2' should set status to 'Press 0 to delete the message.'");
+    }
+    @Test
+    public void testProcessSendStatusChoice3() {
+        Message msg = new Message(1, "+278575975889", "Test message", "3");
+        assertEquals("Message successfully stored.", msg.getSendStatus(), "Choice '3' should set status to 'Message successfully stored.'");
+    }
 }
