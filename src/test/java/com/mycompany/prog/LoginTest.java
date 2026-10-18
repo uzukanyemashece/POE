@@ -149,7 +149,18 @@ public class LoginTest {
     public void testCheckMessageLengthFailure() {
         String longText = "A".repeat(251);
         Message msg = new Message(1, "+278575975889", longText, "1");
-        assertFalse(msg.checkMessageLength(), "Message length should fail when exceeding 250 characters.");
+        assertFalse(msg.checkMessageLength(), "Message length should fail when exceeding"
+                + " 250 characters.");
     
+    }
+    @Test
+    public void testCheckRecipientCellSuccess() {
+        Message msg = new Message(1, "+278575975889", "Test message", "1");
+        assertTrue(msg.checkRecipientCell(), "Recipient cell number should be valid.");
+    }
+    @Test
+    public void testCheckRecipientCellFailure() {
+        Message msg = new Message(1, "08575975889", "Test message", "1");
+        assertFalse(msg.checkRecipientCell(), "Recipient cell number should fail if it lacks international formatting.");
     }
 }
