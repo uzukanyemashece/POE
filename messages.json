@@ -1,0 +1,18 @@
+[
+    {
+    "messageID": "1000000001",
+    "messageNumber": 1,
+    "recipient": "+27718693002",
+    "messageText": "Hi Mike, can you join us for dinner tonight?",
+    "messageHash": "10:1:HIJOIN",
+    "sendStatus": "Message successfully sent"
+  },
+  {
+    "messageID": "1000000002",
+    "messageNumber": 2,
+    "recipient": "+278575975889",
+    "messageText": "Hi Keegan, did you receive the payment?",
+    "messageHash": "10:2:HIRECEIVED",
+    "sendStatus": "Press 0 to delete the message"
+  }
+]
