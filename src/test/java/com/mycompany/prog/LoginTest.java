@@ -139,5 +139,17 @@ public class LoginTest {
      assertFalse(results);
      }
 
+     @Test
+     public void CheckMessageLengthCorrect(){
+         Message msg = new Message(1, "+278575975889", "Hi Keegan, did you receive the payment?", "1");
+        assertTrue(msg.checkMessageLength(), "Message length should be valid (<= 250 characters).");
     
+     }
+    @Test
+    public void testCheckMessageLengthFailure() {
+        String longText = "A".repeat(251);
+        Message msg = new Message(1, "+278575975889", longText, "1");
+        assertFalse(msg.checkMessageLength(), "Message length should fail when exceeding 250 characters.");
+    
+    }
 }
