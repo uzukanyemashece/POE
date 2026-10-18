@@ -163,4 +163,13 @@ public class LoginTest {
         Message msg = new Message(1, "08575975889", "Test message", "1");
         assertFalse(msg.checkRecipientCell(), "Recipient cell number should fail if it lacks international formatting.");
     }
+    
+    @Test
+    public void testCreateMessageHash() {
+       
+        Message msg = new Message(1, "+278575975889", "Hi Keegan, did you receive the payment?", "1");
+        String hash = msg.createMessageHash();
+        assertNotNull(hash, "Message hash should not be null.");
+        assertFalse(hash.isEmpty(), "Message hash should not be empty.");
+    }
 }
