@@ -139,7 +139,6 @@ public class LoginTest {
      assertFalse(results);
      }
 
-     // tests for part 2
      @Test
      public void CheckMessageLengthCorrect(){
          Message msg = new Message(1, "+278575975889", "Hi Keegan, did you receive the payment?", "1");
@@ -200,4 +199,7 @@ public void testProcessSendStatusChoice3() {
     Message msg = new Message(1, "+278575975889", "Test message", "3");
     assertEquals("Message successfully stored", msg.getSendStatus(), "Choice '3' should set status to 'Message successfully stored'");
 }
+    
+
+     
 }
