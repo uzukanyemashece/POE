@@ -5,7 +5,7 @@ package com.mycompany.prog;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.Random;
-import java.util.Scanner;
+
 /**
  *
  * @author Student

@@ -111,11 +111,11 @@ public class Prog {
                         System.out.print("How many messages would you like to enter? ");
                         int numMessages = 0;
                         try {
-                            numMessages = Integer.parseInt(scanner.nextLine());
-                        } catch (NumberFormatException e) {
-                            System.out.println("Please enter a valid numeric value.");
-                            break;
-                        }
+                        numMessages = Integer.parseInt(scanner.nextLine());
+         }                       catch (NumberFormatException e) {
+                     System.out.println("Please enter a valid numeric value.");
+                    break;
+             }
 
                         for (int i = 1; i <= numMessages; i++) {
                             System.out.println("\n--- Entering Message " + i + " of " + numMessages + " ---");
@@ -167,5 +167,5 @@ public class Prog {
             }
                    
     }
-    }
-    }
+    
+    }}
