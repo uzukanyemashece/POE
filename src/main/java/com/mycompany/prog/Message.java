@@ -96,17 +96,17 @@ public class Message {
     private void processSendStatus(String choice) {
         switch (choice) {
             case "1":
-                this.sendStatus = "Message successfully sent";
+                this.sendStatus = "Message successfully sent.";
                 totalMessagesSent++;
                 break;
             case "2":
-                this.sendStatus = "Press 0 to delete the message";
+                this.sendStatus = "Press 0 to delete the message.";
                 break;
             case "3":
-                this.sendStatus = "Message successfully stored";
+                this.sendStatus = "Message successfully stored.";
                 break;
             default:
-                this.sendStatus = "Message successfully stored";
+                this.sendStatus = "Message successfully stored.";
                 break;
         }
     }
