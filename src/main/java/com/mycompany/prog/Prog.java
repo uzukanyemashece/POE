@@ -101,9 +101,9 @@ public class Prog {
                 System.out.println("\nSelect an option from the menu:");
                 System.out.println("1) Send Messages");
                 System.out.println("2) Show recently sent messages");
-                System.out.println("3) Quit");
-                System.out.print("Enter choice (1-3): ");
-                
+              System.out.println("3) Stored Messages Management"); // <-- Fourth main menu option added
+                System.out.println("4) Quit");
+                System.out.print("Enter choice (1-4): ");
                 String choice = scanner.nextLine();
 
                 switch (choice) {
@@ -160,7 +160,8 @@ public class Prog {
         System.out.println("1) Send Message (\"Message successfully sent\")");
         System.out.println("2) Disregard Message (\"Press 0 to delete the message\")");
         System.out.println("3) Store Message to send later (\"Message successfully stored\")");
-        System.out.print("Enter choice (1-3): ");
+        System.out.println("4) Quit"); // Shifted quit to 4 (or keep quit as 5 if you prefer)
+        System.out.print("Enter choice (1-4): ");
         String sendChoice = scanner.nextLine();
 
         // 4. Create Message Object
@@ -188,13 +189,19 @@ public class Prog {
                         break;
 
                     case "3":
+                        // Opens the Stored Messages Management sub-menu
+                        StoredMessageManager.displayStoredMessagesMenu(scanner);
+                        break;
+                        
+                        case "4":
                         System.out.println("Exiting QuickChat. Goodbye!");
                         running = false;
                         break;
 
                     default:
-                        System.out.println("Invalid option. Please choose 1, 2, or 3.");
+                        System.out.println("Invalid option. Please choose 1, 2, or 3 or 4 .");
                         break;
+                        
                 }
             }
                    
