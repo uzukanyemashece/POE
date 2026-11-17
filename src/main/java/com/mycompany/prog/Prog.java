@@ -107,49 +107,81 @@ public class Prog {
                 String choice = scanner.nextLine();
 
                 switch (choice) {
-                    case "1":
-                        System.out.print("How many messages would you like to enter? ");
-                        int numMessages = 0;
-                        try {
-                        numMessages = Integer.parseInt(scanner.nextLine());
-         }                       catch (NumberFormatException e) {
-                     System.out.println("Please enter a valid numeric value.");
-                    break;
-             }
+                   case "1":
+    System.out.print("How many messages would you like to enter? ");
+    int numMessages = 0;
+    try {
+        numMessages = Integer.parseInt(scanner.nextLine());
+    } catch (NumberFormatException e) {
+        System.out.println("Please enter a valid numeric value.");
+        break;
+    }
 
-                        for (int i = 1; i <= numMessages; i++) {
-                            System.out.println("\n--- Entering Message " + i + " of " + numMessages + " ---");
-                            
-                            System.out.print("Enter recipient cell number (with international code, e.g., +27...): ");
-                            String recipient = scanner.nextLine();
+    // Start message numbers at 0
+    for (int i = 0; i < numMessages; i++) {
+        System.out.println("\n--- Entering Message " + i + " of " + (numMessages - 1) + " ---");
+        
+        // 1. Recipient Cell Number Input & Immediate Verification Loop
+        String recipient = "";
+        boolean validRecipient = false;
+        while (!validRecipient) {
+            System.out.print("Enter recipient cell number (with international code, e.g., +27...): ");
+            recipient = scanner.nextLine();
 
-                            System.out.print("Enter message description (max 250 characters): ");
-                            String messageText = scanner.nextLine();
+            Message tempMsg = new Message(i, recipient, "", "1");
+            validRecipient = tempMsg.checkRecipientCell();
 
-                            // Validate length
-                            if (messageText.length() > 250) {
-                                System.out.println("Please enter a message of less than 250 characters.");
-                                i--; // Repeat current iteration loop
-                                continue;
-                            } else {
-                                System.out.println("Message sent");
-                            }
+            if (validRecipient) {
+                System.out.println("Recipient cell number successfully verified.");
+            } else {
+                System.out.println("Cell phone number incorrectly formatted or does not contain international code. Please try again.");
+            }
+        }
 
-                            System.out.println("\nChoose send option:");
-                            System.out.println("1) Send Message (\"Message successfully sent\")");
-                            System.out.println("2) Disregard Message (\"Press 0 to delete the message\")");
-                            System.out.println("3) Store Message to send later (\"Message successfully stored\")");
-                            System.out.print("Enter choice (1-3): ");
-                            String sendChoice = scanner.nextLine();
+        // 2. Message Text Input & Length Validation Loop
+        String messageText = "";
+        boolean validMessage = false;
+        while (!validMessage) {
+            System.out.print("Enter message description (max 250 characters): ");
+            messageText = scanner.nextLine();
 
-                            Message msg = new Message(i, recipient, messageText, sendChoice);
-                            
-                            System.out.println("\n--- Message Details ---");
-                            System.out.println(msg.printMessages());
-                        }
+            Message tempMsg = new Message(i, recipient, messageText, "1");
+            validMessage = tempMsg.checkMessageLength();
 
-                        System.out.println("\nTotal messages sent so far: " + Message.returnTotalMessages());
-                        break;
+            if (validMessage) {
+                System.out.println("Message length approved.");
+            } else {
+                System.out.println("Please enter a message of less than 250 characters.");
+            }
+        }
+
+        // 3. Choose Send Option
+        System.out.println("\nChoose send option:");
+        System.out.println("1) Send Message (\"Message successfully sent\")");
+        System.out.println("2) Disregard Message (\"Press 0 to delete the message\")");
+        System.out.println("3) Store Message to send later (\"Message successfully stored\")");
+        System.out.print("Enter choice (1-3): ");
+        String sendChoice = scanner.nextLine();
+
+        // 4. Create Message Object
+        Message msg = new Message(i, recipient, messageText, sendChoice);
+        
+        // 5. Save the message to messages.json
+        msg.saveMessageToFile();
+
+        // 6. Display details only if sent
+        if (sendChoice.equals("1")) {
+            System.out.println("\n--- Message Details ---");
+            System.out.println(msg.printMessages());
+        } else if (sendChoice.equals("2")) {
+            System.out.println("Message disregarded.");
+        } else {
+            System.out.println("Message successfully stored.");
+        }
+    }
+
+    System.out.println("\nTotal messages sent so far: " + Message.returnTotalMessages());
+    break;
 
                     case "2":
                         System.out.println("Coming Soon.");

@@ -5,12 +5,30 @@ package com.mycompany.prog;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.Random;
-
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  *
  * @author Student
  */
 public class Message {
+    
+    public void saveMessageToFile() {
+        try (FileWriter writer = new FileWriter("messages.json", true)) { // true enables append mode
+            String jsonEntry = "{\n" +
+                    "  \"messageID\": \"" + messageID + "\",\n" +
+                    "  \"messageNumber\": " + messageNumber + ",\n" +
+                    "  \"recipient\": \"" + recipient + "\",\n" +
+                    "  \"messageText\": \"" + messageText + "\",\n" +
+                    "  \"messageHash\": \"" + messageHash + "\",\n" +
+                    "  \"sendStatus\": \"" + sendStatus + "\"\n" +
+                    "},\n";
+            writer.write(jsonEntry);
+            System.out.println("Message successfully saved to messages.json.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving the message to file: " + e.getMessage());
+        }
+    }
   private static int totalMessagesSent = 0; // Accumulates total sent messages across the application run[cite: 3]
     
     private String messageID;
@@ -33,7 +51,9 @@ public class Message {
     private String generateMessageID() {
         Random rand = new Random();
         long id = 1000000000L + (long)(rand.nextDouble() * 9000000000L);
-        return String.valueOf(id);
+        String idStr = String.valueOf(id);
+        // Ensure string manipulation constraints
+        return idStr.substring(0, Math.min(idStr.length(), 10));
     }
 
     // Method to ensure Message ID is not more than 10 characters
@@ -62,7 +82,7 @@ public class Message {
         String firstWord = "";
         String lastWord = "";
         if (this.messageText != null && !this.messageText.trim().isEmpty()) {
-            String cleanText = this.messageText.replaceAll("[^a-zA-Z ]", "").trim();
+           String cleanText = this.messageText.replaceAll("[^a-zA-Z ]", "").trim();
             String[] words = cleanText.split("\\s+");
             if (words.length > 0) {
                 firstWord = words[0];
