@@ -58,4 +58,20 @@ public class StoredMessageManager {
             System.out.println("Could not read messages.json: " + e.getMessage());
         }
     }
+    // Helper method to extract values from JSON string lines
+    private static String extractValue(String line) {
+        int colonIdx = line.indexOf(':');
+        if (colonIdx != -1) {
+            String val = line.substring(colonIdx + 1).trim();
+            // Remove trailing commas and quotes
+            if (val.endsWith(",")) {
+                val = val.substring(0, val.length() - 1);
+            }
+            if (val.startsWith("\"") && val.endsWith("\"")) {
+                val = val.substring(1, val.length() - 1);
+            }
+            return val;
+        }
+        return "";
+    }
 }
